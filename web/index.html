@@ -1,0 +1,42 @@
+
+<!--   Created by IntelliJ IDEA.
+  User: roger
+  Date: 4/17/17
+  Time: 3:06 PM
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>WebGis</title>
+    <link rel="stylesheet" type="text/css" href="./css/ol.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <!-- <script type="text/javascript" src = "/lib/ol/ol.js"></script> -->
+    <script type="text/javascript" src = "./lib/ol/ol-debug.js"></script>
+    <script type="text/javascript" src = "./lib/jquery.js"></script>
+    <script type="text/javascript" src = "./js/init.js"></script>
+<!--     <script type="text/javascript">
+       $.ajax({
+            type : "post",
+            url : "DBconnection",
+            dataType : "text",
+            data : {"a":"3"},
+            success : function(Result) {
+                alert("123")
+            },
+            error : function(xhr, status, errMsg) {
+                alert("456");
+            }
+        });
+    </script> -->
+  </head>
+  <body>
+    <div id = "map">
+      <div id = "SearchBox">
+        <input type="text" id="SearchText" autofocus="autofocus" required="required">
+        <button id="SearchBtn">Search</button>
+      </div>
+      <div id = "ResultList">
+      </div>
+    </div>
+  </body>
+</html>
