@@ -1,16 +1,18 @@
+var map;
+var view = new ol.View({
+	center: [12000000, 4000000],
+	minZoom: 3,
+	zoom: 4
+})
 window.onload = function (){
-	var map = new ol.Map({
+	map = new ol.Map({
 		layers: [
 			new ol.layer.Tile({
 				source: new ol.source.OSM
 			})
 		],
 		target: 'map',
-		view :new ol.View({
-			center: [12000000, 4000000],
-			minZoom: 2,
-			zoom:3
-		})
+		view : view
 	});
 
 	var zoomslider = new ol.control.ZoomSlider();
@@ -30,12 +32,12 @@ $(document).ready(
 	function (){
 		$("#SearchText").keydown(function(event){
 			if(event.keyCode == 13){
-				// alert($('#SearchText').val());
 				Search();
 			}
 		})
 	}
 )
+
 
 function Search(){
 	var value = $("#SearchText").val();
@@ -44,12 +46,25 @@ function Search(){
       type : "post",
       url : "servlet/DBconnection",
       dataType : "text",
-      data : {value:'value'},
+      data : {
+      	"Search":value
+	  },
       success : function(Result) {
-          alert("123")
+		  alert(Result.toString());
+		  source.clear();
+          $.each(eval(Result), function (index, info)
+		  {
+		  	if(index < 20){
+                AddLabel(info);
+			}
+          	// alert(index+"-----"+info.poi_Title);
+          	if(index == 0){
+				view.setCenter(ol.proj.fromLonLat([info.Lng, info.Lat]));
+			}
+		  })
+		  map.addLayer(vector);
       },
       error : function(xhr, status, errMsg) {
-          alert("456");
       }
   	});
 	}
